@@ -1,0 +1,41 @@
+import flash.events.MouseEvent;
+
+stop();
+
+//Code for showing the final score.
+TextScoreFinal.text = String(Score);
+
+//Code for analysing high score.
+if(Score > SavedGame.data.HighScore)
+{
+	SavedGame.data.HighScore = Score;
+	SavedGame.flush();
+	TextHighScore.text = String(SavedGame.data.HighScore);
+	TextHighScoreStatus.text = String("NEW  HIGH  SCORE!");
+}
+else
+{
+	TextHighScore.text = String(SavedGame.data.HighScore);
+	TextHighScoreStatus.text = String("");
+}
+
+//Functions for the buttons.
+ButtonRetry.addEventListener(MouseEvent.CLICK, RestartGameScreen);
+
+function RestartGameScreen(e:MouseEvent)
+{
+	stage.removeChild(ExplosionVariable);
+	Opponents[OpponentNumber].y = -25;
+	gotoAndStop(1,"Game Screen");
+	SoundPowerUpVariable.play();
+}
+
+ButtonHome.addEventListener(MouseEvent.CLICK, GoToMainMenuFromEndScreen);
+
+function GoToMainMenuFromEndScreen(e:MouseEvent)
+{
+	stage.removeChild(ExplosionVariable);
+	Opponents[OpponentNumber].y = -25;
+	gotoAndStop(1,"Main Menu");
+	SoundScoreVariable.play();
+}

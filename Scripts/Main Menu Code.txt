@@ -1,0 +1,46 @@
+import flash.events.MouseEvent;
+import flash.events.KeyboardEvent;
+import flash.net.SharedObject;
+
+stop();
+
+//Declaration of variables.
+var SoundScoreVariable:Sound = new (SoundScore);
+var SoundPowerUpVariable:Sound = new (SoundPowerUp);
+var SavedGame:SharedObject;
+
+//Code to read saved game file.
+SavedGame = SharedObject.getLocal("HighScore.ShuttleFTLSavedGame");
+if(SavedGame.data.HighScore == null)
+{
+	SavedGame.data.HighScore = 0;
+}
+else
+{
+	TextHighScore.text = String(SavedGame.data.HighScore);
+}
+
+//Functions for the buttons.
+ButtonPlay.addEventListener(MouseEvent.CLICK, StartGameScreen);
+
+function StartGameScreen(e:MouseEvent)
+{
+	gotoAndStop(1,"Game Screen");
+	SoundPowerUpVariable.play();
+}
+
+ButtonHelp.addEventListener(MouseEvent.CLICK, GoToHelpScreen);
+
+function GoToHelpScreen(e:MouseEvent)
+{
+	gotoAndStop(1,"Help Screen");
+	SoundScoreVariable.play();
+}
+
+ButtonAbout.addEventListener(MouseEvent.CLICK, GoToAboutScreen);
+
+function GoToAboutScreen(e:MouseEvent)
+{
+	gotoAndStop(1,"About Screen");
+	SoundScoreVariable.play();
+}
