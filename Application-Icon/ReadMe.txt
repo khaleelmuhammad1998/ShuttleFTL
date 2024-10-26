@@ -1,1 +1,1 @@
-This folder contains application icons of Shuttle FTL (All Versions).
+This folder contains application icons of Shuttle FTL (Latest Version).

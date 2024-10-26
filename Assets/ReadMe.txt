@@ -1,1 +1,1 @@
-This folder contain assets of Shuttle FTL (All Versions).
+This folder contain assets of Shuttle FTL (Latest Version).
