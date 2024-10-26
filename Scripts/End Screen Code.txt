@@ -2,40 +2,50 @@ import flash.events.MouseEvent;
 
 stop();
 
-//Code for showing the final score.
+// Code for showing the final score.
 TextScoreFinal.text = String(Score);
 
-//Code for analysing high score.
-if(Score > SavedGame.data.HighScore)
-{
-	SavedGame.data.HighScore = Score;
-	SavedGame.flush();
-	TextHighScore.text = String(SavedGame.data.HighScore);
-	TextHighScoreStatus.text = String("NEW  HIGH  SCORE!");
+// Funtion for analysing high score.
+function analyseHighScore() {
+	if (Score > SavedGameHighScore.data.HighScore) {
+		SavedGameHighScore.data.HighScore = Score;
+		SavedGameHighScore.flush();
+		TextHighScore.text = String(SavedGameHighScore.data.HighScore);
+		TextHighScoreStatus.text = String("NEW  HIGH  SCORE!");
+	} else {
+		TextHighScore.text = String(SavedGameHighScore.data.HighScore);
+		TextHighScoreStatus.text = String("");
+	}
 }
-else
-{
-	TextHighScore.text = String(SavedGame.data.HighScore);
-	TextHighScoreStatus.text = String("");
-}
+analyseHighScore();
 
-//Functions for the buttons.
-ButtonRetry.addEventListener(MouseEvent.CLICK, RestartGameScreen);
-
-function RestartGameScreen(e:MouseEvent)
-{
+// Function to clear the end screen before leaving the scene.
+function clearEndScreen() {
 	stage.removeChild(ExplosionVariable);
-	Opponents[OpponentNumber].y = -25;
+	if (Opponents[OpponentNumber].y != -25) {
+		Opponents[OpponentNumber].y = -25;
+		Opponents[OpponentNumber].x = 75;
+		stage.removeChild(Opponents[OpponentNumber]);
+	}
+	if (Opponents2[Opponent2Number].y != -25) {
+		Opponents2[Opponent2Number].y = -25;
+		Opponents2[Opponent2Number].x = 75;
+		stage.removeChild(Opponents2[Opponent2Number]);
+	}
+}
+
+// Function for Retry button.
+function restartGameScreen(event: MouseEvent) {
+	clearEndScreen();
+	ButtonRetry.removeEventListener(MouseEvent.CLICK, restartGameScreen);
 	gotoAndStop(1,"Game Screen");
-	SoundPowerUpVariable.play();
 }
+ButtonRetry.addEventListener(MouseEvent.CLICK, restartGameScreen);
 
-ButtonHome.addEventListener(MouseEvent.CLICK, GoToMainMenuFromEndScreen);
-
-function GoToMainMenuFromEndScreen(e:MouseEvent)
-{
-	stage.removeChild(ExplosionVariable);
-	Opponents[OpponentNumber].y = -25;
+// Function for Home button.
+function GoToMainMenuFromEndScreen(event: MouseEvent) {
+	clearEndScreen();
+	ButtonHome.removeEventListener(MouseEvent.CLICK, GoToMainMenuFromEndScreen);
 	gotoAndStop(1,"Main Menu");
-	SoundScoreVariable.play();
 }
+ButtonHome.addEventListener(MouseEvent.CLICK, GoToMainMenuFromEndScreen);

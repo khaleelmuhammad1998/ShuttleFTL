@@ -1,46 +1,76 @@
 import flash.events.MouseEvent;
-import flash.events.KeyboardEvent;
 import flash.net.SharedObject;
 
 stop();
 
-//Declaration of variables.
-var SoundScoreVariable:Sound = new (SoundScore);
-var SoundPowerUpVariable:Sound = new (SoundPowerUp);
-var SavedGame:SharedObject;
+// Declaration of variables.
+var SavedGameHighScore: SharedObject = null;
+var SavedGameSoundEnabled: SharedObject = null;
+var SoundEnabled: Boolean = true;
 
-//Code to read saved game file.
-SavedGame = SharedObject.getLocal("HighScore.ShuttleFTLSavedGame");
-if(SavedGame.data.HighScore == null)
-{
-	SavedGame.data.HighScore = 0;
+// Function to read saved game file.
+function readSavedGame() {
+	SavedGameHighScore = SharedObject.getLocal("HighScore.ShuttleFTLSavedGame");
+	if(SavedGameHighScore.data.HighScore == null) {
+		SavedGameHighScore.data.HighScore = 0;
+	} else {
+		TextHighScore.text = String(SavedGameHighScore.data.HighScore);
+	}
+	SavedGameSoundEnabled = SharedObject.getLocal("SoundEnabled.ShuttleFTLSavedGame");
+	if(SavedGameSoundEnabled.data.SoundEnabled == null) {
+		SavedGameSoundEnabled.data.SoundEnabled = SoundEnabled;
+	} else {
+		SoundEnabled = SavedGameSoundEnabled.data.SoundEnabled;
+		if (SoundEnabled == true) {
+			SoundEnabled = true;
+			TextOptionSoundStatus.text = "ON";
+		} else {
+			SoundEnabled = false;
+			TextOptionSoundStatus.text = "OFF";
+		}
+	}
 }
-else
-{
-	TextHighScore.text = String(SavedGame.data.HighScore);
+readSavedGame();
+
+// Function to remove button listeners when leaving Main Menu.
+function removeButtonListeners() {
+	ButtonPlay.removeEventListener(MouseEvent.CLICK, startGameScreen);	
+	ButtonOptionSound.removeEventListener(MouseEvent.CLICK, toggleSound);
+	ButtonHelp.removeEventListener(MouseEvent.CLICK, GoToHelpScreen);
+	ButtonAbout.removeEventListener(MouseEvent.CLICK, GoToAboutScreen);
 }
 
-//Functions for the buttons.
-ButtonPlay.addEventListener(MouseEvent.CLICK, StartGameScreen);
+// Function to toggle game's sound effects on or off.
+function toggleSound(event: MouseEvent) {
+	if (SoundEnabled == true) {
+		SoundEnabled = false;
+		TextOptionSoundStatus.text = "OFF";
+	} else {
+		SoundEnabled = true;
+		TextOptionSoundStatus.text = "ON";
+	}
+	SavedGameSoundEnabled.data.SoundEnabled = SoundEnabled;
+	SavedGameSoundEnabled.flush();
+}
+ButtonOptionSound.addEventListener(MouseEvent.CLICK, toggleSound);
 
-function StartGameScreen(e:MouseEvent)
-{
+// Function for Play button.
+function startGameScreen(event: MouseEvent) {
+	removeButtonListeners();
 	gotoAndStop(1,"Game Screen");
-	SoundPowerUpVariable.play();
 }
+ButtonPlay.addEventListener(MouseEvent.CLICK, startGameScreen);
 
+// Function for Help button.
+function GoToHelpScreen(e:MouseEvent) {
+	removeButtonListeners();
+	gotoAndStop(1,"Help Screen");
+}
 ButtonHelp.addEventListener(MouseEvent.CLICK, GoToHelpScreen);
 
-function GoToHelpScreen(e:MouseEvent)
-{
-	gotoAndStop(1,"Help Screen");
-	SoundScoreVariable.play();
-}
-
-ButtonAbout.addEventListener(MouseEvent.CLICK, GoToAboutScreen);
-
-function GoToAboutScreen(e:MouseEvent)
-{
+// Function for About button.
+function GoToAboutScreen(e:MouseEvent) {
+	removeButtonListeners();
 	gotoAndStop(1,"About Screen");
-	SoundScoreVariable.play();
 }
+ButtonAbout.addEventListener(MouseEvent.CLICK, GoToAboutScreen);
