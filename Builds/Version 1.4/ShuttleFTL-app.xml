@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<!-- 
+	Usage:
+
+	To localize the description, use the following format for the description element.
+	<description>
+	<text xml:lang="en">English App description goes here</text>
+	<text xml:lang="fr">French App description goes here</text>
+	<text xml:lang="ja">Japanese App description goes here</text>
+	</description>
+
+	To localize the name, use the following format for the name element.
+	<name>
+	<text xml:lang="en">English App name goes here</text>
+	<text xml:lang="fr">French App name goes here</text>
+	<text xml:lang="ja">Japanese App name goes here</text>
+	</name>
+-->
+<application xmlns="http://ns.adobe.com/air/application/51.1">
+  <id>air.KhaleelM.ShuttleFTL</id>
+  <versionNumber>1.4.0</versionNumber>
+  <versionLabel>1.4</versionLabel>
+  <filename>Shuttle FTL</filename>
+  <description>Shuttle FTL</description>
+  <name>Shuttle FTL</name>
+  <copyright>Khaleel M</copyright>
+  <initialWindow>
+    <content>ShuttleFTL.swf</content>
+    <systemChrome>standard</systemChrome>
+    <transparent>false</transparent>
+    <visible>true</visible>
+    <fullScreen>false</fullScreen>
+    <aspectRatio>portrait</aspectRatio>
+    <renderMode>auto</renderMode>
+    <autoOrients>false</autoOrients>
+    <maximizable>true</maximizable>
+    <minimizable>true</minimizable>
+    <resizable>true</resizable>
+  </initialWindow>
+  <icon>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <image36x36>AppIconsForPublish/AppIcon36.png</image36x36>
+    <image48x48>AppIconsForPublish/AppIcon48.png</image48x48>
+    <image72x72>AppIconsForPublish/AppIcon72.png</image72x72>
+    <image96x96>AppIconsForPublish/AppIcon96.png</image96x96>
+    <image144x144>AppIconsForPublish/AppIcon144.png</image144x144>
+    <image192x192>AppIconsForPublish/AppIcon192.png</image192x192>
+    <image16x16>AppIconsForPublish/AppIcon16.png</image16x16>
+    <image32x32>AppIconsForPublish/AppIcon32.png</image32x32>
+    <image128x128>AppIconsForPublish/AppIcon128.png</image128x128>
+  </icon>
+  <customUpdateUI>false</customUpdateUI>
+  <allowBrowserInvocation>false</allowBrowserInvocation>
+  <android>
+    <manifestAdditions><![CDATA[<manifest>
+</manifest>]]></manifestAdditions>
+  </android>
+  <supportedLanguages>en</supportedLanguages>
+  <supportedProfiles>desktop extendedDesktop mobileDevice extendedMobileDevice </supportedProfiles>
+</application>

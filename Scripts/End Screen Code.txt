@@ -22,14 +22,14 @@ analyseHighScore();
 // Function to clear the end screen before leaving the scene.
 function clearEndScreen() {
 	stage.removeChild(ExplosionVariable);
-	if (Opponents[OpponentNumber].y != -25) {
-		Opponents[OpponentNumber].y = -25;
-		Opponents[OpponentNumber].x = 75;
+	if (Opponents[OpponentNumber].y != OpponentBasePosition) {
+		Opponents[OpponentNumber].y = OpponentBasePosition;
+		Opponents[OpponentNumber].x = GameLaneCenter;
 		stage.removeChild(Opponents[OpponentNumber]);
 	}
-	if (Opponents2[Opponent2Number].y != -25) {
-		Opponents2[Opponent2Number].y = -25;
-		Opponents2[Opponent2Number].x = 75;
+	if (Opponents2[Opponent2Number].y != OpponentBasePosition) {
+		Opponents2[Opponent2Number].y = OpponentBasePosition;
+		Opponents2[Opponent2Number].x = GameLaneCenter;
 		stage.removeChild(Opponents2[Opponent2Number]);
 	}
 }
