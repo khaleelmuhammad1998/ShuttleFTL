@@ -86,10 +86,10 @@ function updateGameLevel() {
 		PlayerHeightPosition = 520;
 		GameLevel = 3;
 	} else {
-		GameSpeedMin = 35;
+		GameSpeedMin = 32;
 		GameSpeedMax = 40;
 		GameHealthMax = 5;
-		PlayerHeightPosition = 500;
+		PlayerHeightPosition = 520;
 		GameLevel = 4;
 	}
 }

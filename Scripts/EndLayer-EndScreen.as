@@ -11,7 +11,7 @@ function analyseHighScore() {
 		SavedGameHighScore.data.HighScore = Score;
 		SavedGameHighScore.flush();
 		TextHighScore.text = String(SavedGameHighScore.data.HighScore);
-		TextHighScoreStatus.text = String("NEW HIGH SCORE!");
+		TextHighScoreStatus.text = String("HIGH SCORE!");
 	} else {
 		TextHighScore.text = String(SavedGameHighScore.data.HighScore);
 		TextHighScoreStatus.text = String("");
